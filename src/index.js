@@ -53,7 +53,7 @@ const pledgeBoxes = document.querySelectorAll('.pledge-box');
 const circleBtnsFill = document.querySelectorAll('.circle-btn>div');
 const isClicked = [false, false, false];
 
-for (let i = 0; i < circleBtns.length; i++) {
+for (let i = 0; i < circleBtns.length - 1; i++) {
   selecCardHeaders[i].addEventListener('click', () => {
     if (isClicked[i]) {
       innerCards[i].setAttribute('class', 'card inner-card');
