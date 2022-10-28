@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css?family=Commissioner:400,500,700&display=swap');
+/* Global Styles */
+:root {
+  --dark-gray: hsl(0, 0%, 48%);
+  --moderate-cyan: hsl(176, 50%, 47%);
+  --opaque-dark-gray: rgba(122, 122, 122, 0.5);
+  --dark-cyan: hsl(176, 72%, 28%);
+
+  --default-font-size: 16px;
+  --normal-font-weight: 400;
+  --slightly-bold-font-weight: 500;
+  --bold-font-weight: 700;
+
+  --default-border-radius: 0.75rem;
+  --default-line-height: 1.6;
+  --default-margin: 1.25rem;
+  --default-padding: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  font-family: 'Commissioner', sans-serif;
+  font-size: var(--default-font-size);
+  font-weight: var(--normal-font-weight);
+}
+
+main {
+  flex: 1 0 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  line-height: var(--default-line-height);
+  width: 100%;
+}
+
+.circle-btn {
+  background-color: white;
+  border-radius: 50%;
+  border: 0.063rem solid var(--dark-gray);
+  cursor: pointer;
+  margin-right: 0.75rem;
+  padding: 1rem;
+}
+
+/* Change padding of circle btn so it remains same size when clicked */
+.circle-btn-active {
+  padding: 0.5rem;
+}
+/* Change bg of div inside circle btn when it is clicked */
+.circle-btn-fill {
+  background: var(--dark-cyan);
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.txt-btn {
+  background-color: var(--moderate-cyan);
+  border: none;
+  border-radius: 2.25rem;
+  color: white;
+  cursor: pointer;
+  font-weight: var(--bold-font-weight);
+  text-align: center;
+  padding: var(--default-padding) 2rem;
+}
+
+.txt-btn:hover,
+.txt-btn:active {
+  background-color: var(--dark-cyan);
+}
+
+.txt-btn-gray {
+  background-color: var(--dark-gray);
+  border: none;
+  border-radius: 2.25rem;
+  color: white;
+  font-weight: var(--bold-font-weight);
+  text-align: center;
+  padding: var(--default-padding) 2rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--default-border-radius);
+  box-shadow: 0 0 0.125rem var(--opaque-dark-gray);
+  color: var(--dark-gray);
+  margin: 0 var(--default-margin) var(--default-margin) var(--default-margin);
+  padding: var(--default-padding);
+}
+
+.inner-card {
+  box-shadow: 0 0 0.063rem var(--dark-gray);
+  margin: var(--default-margin) 0;
+}
+
+.inner-card-selected {
+  border: 0.125rem solid var(--moderate-cyan);
+  margin: var(--default-margin) 0;
+}
+
+.modal {
+  display: none;
+  height: max-content;
+  overflow: auto;
+  left: var(--default-margin);
+  right: var(--default-margin);
+  top: var(--default-margin);
+  position: absolute;
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: var(--default-border-radius);
+  padding: var(--default-padding);
+}
+
+.opaque {
+  opacity: 0.5;
+}
+
+.visually-hidden {
+  display: none !important;
+}
+
+/* Component styles */
+#pg-header {
+  display: flex;
+  flex: initial;
+  position: relative;
+
+  & #menu-box {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    padding: var(--default-padding);
+    width: 100%;
+
+    & #ham-menu {
+      cursor: pointer;
+    }
+  }
+
+  & #nav-modal {
+    flex: auto;
+    top: 3.5rem;
+    overflow: visible;
+
+    & #ham-menu-close {
+      cursor: pointer;
+      height: auto;
+      position: absolute;
+      right: 0;
+      top: -2.1rem;
+      width: auto;
+    }
+
+    & menu {
+      cursor: pointer;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      & hr {
+        border: 0.063rem solid var(--dark-gray);
+      }
+    }
+
+    & li {
+      font-weight: var(--slightly-bold-font-weight);
+      margin: 0;
+      padding: 1rem 0.75rem;
+    }
+  }
+
+  & #mobile-img {
+    flex: auto;
+    height: auto;
+    object-fit: scale-down;
+    width: 100%;
+  }
+
+  & #desktop-img {
+    display: none;
+  }
+}
+
+#intro {
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+
+  & #mastercraft-logo {
+    position: absolute;
+    top: -1.5rem;
+  }
+
+  & > header {
+    flex: auto;
+
+    & h1 {
+      color: black;
+      font-weight: var(--bold-font-weight);
+    }
+  }
+
+  & > button {
+    flex: initial;
+    margin-right: var(--default-margin);
+  }
+}
+
+#goals {
+  align-self: stretch;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  & p {
+    color: black;
+    flex: auto;
+    font-size: 2rem;
+    font-weight: var(--bold-font-weight);
+    text-align: center;
+
+    & > span {
+      color: var(--dark-gray);
+      font-size: var(--default-font-size);
+      font-weight: var(--normal-font-weight);
+    }
+  }
+  /* Creates short bottom border */
+  & p:after {
+    border-bottom: 0.063rem solid var(--dark-gray);
+    content: '';
+    display: block;
+    margin: auto;
+    position: relative;
+    width: 20%;
+  }
+
+  & meter {
+    appearance: none;
+    background: none;
+    background-color: var(--dark-gray);
+    border-radius: var(--default-border-radius);
+    flex: auto;
+  }
+
+  & meter::-moz-meter-bar {
+    background: var(--moderate-cyan);
+    border-radius: var(--default-border-radius);
+  }
+
+  & meter::-webkit-meter-bar {
+    appearance: none;
+    background: var(--moderate-cyan);
+  }
+}
+
+#about {
+  & > h2 {
+    color: black;
+    font-weight: var(--bold-font-weight);
+  }
+
+  & h3 {
+    color: black;
+    font-weight: var(--bold-font-weight);
+
+    & > span {
+      color: var(--moderate-cyan);
+      font-weight: var(--slightly-bold-font-weight);
+    }
+  }
+
+  & p {
+    & > span {
+      color: black;
+      font-size: 2rem;
+      font-weight: var(--bold-font-weight);
+    }
+  }
+}
+
+#selection-modal {
+  top: 10rem;
+
+  & #title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      color: black;
+      font-weight: var(--bold-font-weight);
+    }
+
+    & #close-modal {
+      flex: initial;
+      cursor: pointer;
+      height: 15;
+      width: 15;
+    }
+  }
+
+  & header > p {
+    color: var(--dark-gray);
+  }
+
+  & .card > header:hover {
+    cursor: pointer;
+
+    & > button {
+      border: 0.063rem solid var(--moderate-cyan);
+    }
+
+    & > h3 {
+      color: var(--moderate-cyan);
+    }
+  }
+
+  & .card > header {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    & h3 {
+      color: black;
+      font-weight: var(--bold-font-weight);
+
+      & > span {
+        color: var(--moderate-cyan);
+        font-weight: var(--slightly-bold-font-weight);
+      }
+    }
+  }
+
+  & p > span {
+    color: black;
+    font-size: 2rem;
+    font-weight: var(--bold-font-weight);
+  }
+
+  & .pledge-box {
+    align-items: center;
+    border-top: 0.063rem solid var(--opaque-dark-gray);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & > p {
+      flex: auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    & .pledge-field {
+      border: 0.125rem solid var(--opaque-dark-gray);
+      border-radius: 2.25rem;
+      caret-color: var(--dark-cyan);
+      cursor: pointer;
+      flex: initial;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: var(--bold-font-weight);
+      text-align: center;
+      padding: 1rem 0;
+      margin-right: var(--default-margin);
+      max-width: 8rem;
+    }
+
+    & > button {
+      flex: initial;
+    }
+  }
+}
+
+#thank-u-modal {
+  top: 10rem;
+
+  & .modal-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  & h2 {
+    flex: 1 0 100%;
+    color: black;
+    font-weight: var(--bold-font-weight);
+    text-align: center;
+  }
+
+  & p {
+    flex: 1 0 100%;
+    color: var(--dark-gray);
+  }
+}
