@@ -46,7 +46,13 @@ main {
   flex-wrap: nowrap;
   justify-content: center;
   line-height: var(--default-line-height);
+  position: relative;
   width: 100%;
+  /* Keep cards positioned correctly as monitor background image changes size when viewport changes size */
+  & > div {
+    position: absolute;
+    top: 75%;
+  }
 }
 
 .big-number {
@@ -94,6 +100,12 @@ main {
 .inner-card-selected {
   border: 0.125rem solid var(--moderate-cyan);
   margin: var(--default-margin) 0;
+}
+
+.img {
+  height: auto;
+  object-fit: fill;
+  max-width: 100%;
 }
 
 .modal {
@@ -237,17 +249,6 @@ main {
         width: 100%;
       }
     }
-  }
-
-  & #mobile-img {
-    flex: auto;
-    height: auto;
-    object-fit: scale-down;
-    width: 100%;
-  }
-
-  & #desktop-img {
-    display: none;
   }
 }
 
