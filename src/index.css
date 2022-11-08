@@ -168,7 +168,7 @@ main {
 }
 
 .visually-hidden {
-  display: none !important;
+  display: none;
 }
 
 /* Component styles */

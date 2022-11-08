@@ -4,13 +4,13 @@ const hamMenu = document.querySelector('#ham-menu');
 const hamMenuClose = document.querySelector('#ham-menu-close');
 
 hamMenu.addEventListener('click', () => {
-  navModal.setAttribute('style', 'display: block');
-  hamMenu.setAttribute('style', 'display: none');
+  navModal.classList.remove('visually-hidden');
+  hamMenu.classList.add('visually-hidden');
 });
 
 hamMenuClose.addEventListener('click', () => {
-  navModal.setAttribute('style', '');
-  hamMenu.setAttribute('style', '');
+  navModal.classList.add('visually-hidden');
+  hamMenu.classList.remove('visually-hidden');
 });
 
 // Control active state for bookmark
