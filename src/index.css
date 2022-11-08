@@ -109,7 +109,6 @@ main {
 }
 
 .modal {
-  display: none;
   height: max-content;
   overflow: auto;
   left: var(--default-margin);
@@ -180,7 +179,7 @@ main {
 }
 
 .visually-hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Component styles */
@@ -188,6 +187,8 @@ main {
   display: flex;
   flex: initial;
   position: relative;
+  z-index: 1;
+  width: 100%;
 
   & #menu-box {
     flex: auto;
@@ -195,6 +196,7 @@ main {
     align-items: center;
     justify-content: space-between;
     position: absolute;
+    top: 0;
     padding: var(--default-padding);
     width: 100%;
 
@@ -395,4 +397,7 @@ main {
   & p {
     flex: 1 0 100%;
   }
+}
+
+@media (min-width: 750px) {
 }

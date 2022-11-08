@@ -36,11 +36,11 @@ const selecModal = document.querySelector('#selection-modal');
 const modalClose = document.querySelector('#close-modal');
 
 backProjBtn.addEventListener('click', () => {
-  selecModal.setAttribute('style', 'display: block');
+  selecModal.classList.remove('visually-hidden');
 });
 
 modalClose.addEventListener('click', () => {
-  selecModal.setAttribute('style', '');
+  selecModal.classList.add('visually-hidden');
 });
 
 // Open pledge boxes
@@ -59,12 +59,12 @@ for (let i = 0; i < circleBtns.length - 1; i++) {
       innerCards[i].setAttribute('class', 'card inner-card');
       circleBtns[i].setAttribute('class', 'circle-btn');
       circleBtnsFill[i].setAttribute('class', '');
-      pledgeBoxes[i].setAttribute('class', 'pledge-box visually-hidden');
+      pledgeBoxes[i].classList.add('visually-hidden');
     } else {
       innerCards[i].setAttribute('class', 'card inner-card-selected');
       circleBtns[i].setAttribute('class', 'circle-btn circle-btn-active');
       circleBtnsFill[i].setAttribute('class', 'circle-btn-fill');
-      pledgeBoxes[i].setAttribute('class', 'pledge-box');
+      pledgeBoxes[i].classList.remove('visually-hidden');
     }
     isClicked[i] = isClicked[i] ? false : true;
   });
@@ -77,11 +77,11 @@ const gotItBtn = document.querySelector('#thank-u-modal button');
 
 for (let i = 0; i < contBtns.length; i++) {
   contBtns[i].addEventListener('click', () => {
-    selecModal.setAttribute('style', '');
-    thankUModal.setAttribute('style', 'display: block');
+    selecModal.classList.add('visually-hidden');
+    thankUModal.classList.remove('visually-hidden');
   });
 }
 
 gotItBtn.addEventListener('click', () => {
-  thankUModal.setAttribute('style', '');
+  thankUModal.classList.add('visually-hidden');
 });
