@@ -7,15 +7,15 @@
   --opaque-dark-gray: rgba(122, 122, 122, 0.5);
   --dark-cyan: hsl(176, 72%, 28%);
 
-  --default-font-size: 16px;
-  --normal-font-weight: 400;
-  --slightly-bold-font-weight: 500;
-  --bold-font-weight: 700;
+  --font-size: 16px;
+  --normal-font: 400;
+  --slightly-bold-font: 500;
+  --bold-font: 700;
 
-  --default-border-radius: 0.75rem;
-  --default-line-height: 1.6;
-  --default-margin: 1.25rem;
-  --default-padding: 1.25rem;
+  --border-radius: 0.75rem;
+  --line-height: 1.6;
+  --margin: 1.25rem;
+  --padding: 1.25rem;
 }
 
 * {
@@ -24,31 +24,21 @@
 
 html,
 body {
+  font-family: 'Commissioner', sans-serif;
+  font-size: var(--font-size);
+  font-weight: var(--normal-font);
   margin: 0;
   width: 100%;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  font-family: 'Commissioner', sans-serif;
-  font-size: var(--default-font-size);
-  font-weight: var(--normal-font-weight);
-}
-
 main {
-  flex: 1 0 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  line-height: var(--default-line-height);
+  line-height: var(--line-height);
   position: relative;
-  width: 100%;
   /* Keep cards positioned correctly as monitor background image changes size when viewport changes size */
   & > div {
     position: absolute;
@@ -59,7 +49,7 @@ main {
 .big-number {
   color: black;
   font-size: 2rem;
-  font-weight: var(--bold-font-weight);
+  font-weight: var(--bold-font);
 }
 
 .circle-btn {
@@ -70,7 +60,6 @@ main {
   margin-right: 0.75rem;
   padding: 1rem;
 }
-
 /* Change padding of circle btn so it remains same size when clicked */
 .circle-btn-active {
   padding: 0.5rem;
@@ -86,21 +75,21 @@ main {
 
 .card {
   background-color: white;
-  border-radius: var(--default-border-radius);
+  border-radius: var(--border-radius);
   box-shadow: 0 0 0.125rem var(--opaque-dark-gray);
   color: var(--dark-gray);
-  margin: 0 var(--default-margin) var(--default-margin) var(--default-margin);
-  padding: var(--default-padding);
+  margin: 0 var(--margin) var(--margin) var(--margin);
+  padding: var(--padding);
 }
 
 .inner-card {
   box-shadow: 0 0 0.063rem var(--dark-gray);
-  margin: var(--default-margin) 0;
+  margin: var(--margin) 0;
 }
 
 .inner-card-selected {
   border: 0.125rem solid var(--moderate-cyan);
-  margin: var(--default-margin) 0;
+  margin: var(--margin) 0;
 }
 
 .img {
@@ -112,17 +101,17 @@ main {
 .modal {
   height: max-content;
   overflow: auto;
-  left: var(--default-margin);
-  right: var(--default-margin);
-  top: var(--default-margin);
   position: absolute;
+  left: var(--margin);
+  right: var(--margin);
+  top: var(--margin);
   z-index: 1;
 }
 
 .modal-content {
   background-color: white;
-  border-radius: var(--default-border-radius);
-  padding: var(--default-padding);
+  border-radius: var(--border-radius);
+  padding: var(--padding);
 }
 
 .opaque {
@@ -131,18 +120,18 @@ main {
 
 .paragraph {
   color: var(--dark-gray);
-  font-size: var(--default-font-size);
-  font-weight: var(--normal-font-weight);
+  font-size: var(--font-size);
+  font-weight: var(--normal-font);
 }
 
 .title {
   color: black;
-  font-weight: var(--bold-font-weight);
+  font-weight: var(--bold-font);
 }
 
 .subtitle {
   color: var(--moderate-cyan);
-  font-weight: var(--slightly-bold-font-weight);
+  font-weight: var(--slightly-bold-font);
 }
 
 .short-bot-border::after {
@@ -160,9 +149,9 @@ main {
   border-radius: 2.25rem;
   color: white;
   cursor: pointer;
-  font-weight: var(--bold-font-weight);
+  font-weight: var(--bold-font);
   text-align: center;
-  padding: var(--default-padding) 2rem;
+  padding: var(--padding) 2rem;
 }
 
 .txt-btn:hover,
@@ -183,22 +172,22 @@ main {
   display: none !important;
 }
 
+:focus {
+  outline: var(--dark-cyan) solid 0.125rem;
+}
 /* Component styles */
 #pg-header {
-  display: flex;
-  flex: initial;
   position: relative;
   z-index: 1;
   width: 100%;
 
   & #menu-box {
-    flex: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: absolute;
     top: 0;
-    padding: var(--default-padding);
+    padding: var(--padding);
     width: 100%;
 
     & #ham-menu {
@@ -236,9 +225,9 @@ main {
 
       & li {
         cursor: pointer;
-        font-weight: var(--slightly-bold-font-weight);
+        font-weight: var(--slightly-bold-font);
         margin: 0;
-        padding: var(--default-padding);
+        padding: var(--padding);
       }
 
       & .short-bot-border:after {
@@ -272,7 +261,7 @@ main {
 
     & button {
       flex: initial;
-      margin-right: var(--default-margin);
+      margin-right: var(--margin);
     }
 
     & div:hover {
@@ -307,13 +296,13 @@ main {
     appearance: none;
     background: none;
     background-color: var(--opaque-dark-gray);
-    border-radius: var(--default-border-radius);
+    border-radius: var(--border-radius);
     flex: auto;
   }
 
   & meter::-moz-meter-bar {
     background: var(--moderate-cyan);
-    border-radius: var(--default-border-radius);
+    border-radius: var(--border-radius);
   }
 
   & meter::-webkit-meter-bar {
@@ -377,10 +366,10 @@ main {
       flex: initial;
       font-family: inherit;
       font-size: inherit;
-      font-weight: var(--bold-font-weight);
+      font-weight: var(--bold-font);
       text-align: center;
       padding: 1rem 0;
-      margin-right: var(--default-margin);
+      margin-right: var(--margin);
       max-width: 8rem;
     }
 
@@ -402,7 +391,7 @@ main {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    line-height: var(--default-line-height);
+    line-height: var(--line-height);
     text-align: center;
   }
 
@@ -458,7 +447,7 @@ main {
       flex: auto;
       justify-content: space-between;
       width: 100%;
-      padding: var(--default-padding);
+      padding: var(--padding);
 
       & button {
         margin-right: auto;
@@ -470,10 +459,10 @@ main {
         color: var(--dark-gray);
         display: flex;
         align-items: center;
-        font-weight: var(--bold-font-weight);
+        font-weight: var(--bold-font);
 
         & span {
-          margin: 0 var(--default-margin);
+          margin: 0 var(--margin);
           display: inline-block !important;
         }
       }
@@ -524,7 +513,12 @@ main {
   }
 
   #selection-modal {
-    max-width: 44.5rem;
+    & .modal-content {
+      left: auto;
+      right: auto;
+      margin: auto;
+      max-width: 44.5rem;
+    }
 
     & .card header > div {
       display: flex;
@@ -549,7 +543,7 @@ main {
     & .pledge-box {
       justify-content: space-between;
       flex-wrap: nowrap;
-      padding-top: var(--default-padding);
+      padding-top: var(--padding);
 
       & p {
         flex: initial;
@@ -563,6 +557,6 @@ main {
     right: auto;
     margin: auto;
     max-width: 35rem;
-    padding: calc(2 * var(--default-padding));
+    padding: calc(2 * var(--padding));
   }
 }
