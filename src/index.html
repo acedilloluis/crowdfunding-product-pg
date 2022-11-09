@@ -19,26 +19,26 @@
       <div id="menu-box">
         <img src="images/logo.svg" alt="crowdfund logo" />
         <img src="images/icon-hamburger.svg" alt="menu button" id="ham-menu" />
-      </div>
 
-      <div id="nav-modal" class="modal visually-hidden">
-        <img
-          src="images/icon-close-menu.svg"
-          alt="close menu button"
-          id="ham-menu-close"
-        />
+        <div id="nav-modal" class="modal visually-hidden">
+          <img
+            src="images/icon-close-menu.svg"
+            alt="close menu button"
+            id="ham-menu-close"
+          />
 
-        <nav class="modal-content">
-          <menu>
-            <div class="short-bot-border">
-              <a href="#about"><li>About</li></a>
-            </div>
-            <div class="short-bot-border">
-              <a href="#goals"><li>Discover</li></a>
-            </div>
-            <a href="#bamboo"><li>Get Started</li></a>
-          </menu>
-        </nav>
+          <nav class="modal-content">
+            <menu>
+              <div class="short-bot-border">
+                <li>About</li>
+              </div>
+              <div class="short-bot-border">
+                <li>Discover</li>
+              </div>
+              <li>Get Started</li>
+            </menu>
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -73,24 +73,35 @@
               strain.
             </p>
           </header>
-          <button type="button" id="back-proj-btn" class="txt-btn">
-            Back this project
-          </button>
-          <svg
-            width="56"
-            height="56"
-            xmlns="http://www.w3.org/2000/svg"
-            id="bkmk"
-          >
-            <g fill="none" fill-rule="evenodd">
-              <circle fill="#2F2F2F" cx="28" cy="28" r="28" id="bkmk-circle" />
-              <path
-                fill="#B1B1B1"
-                d="M23 19v18l5-5.058L33 37V19z"
-                id="bkmk-path"
-              />
-            </g>
-          </svg>
+          <div>
+            <button type="button" id="back-proj-btn" class="txt-btn">
+              Back this project
+            </button>
+            <div>
+              <svg
+                width="56"
+                height="56"
+                xmlns="http://www.w3.org/2000/svg"
+                id="bkmk"
+              >
+                <g fill="none" fill-rule="evenodd">
+                  <circle
+                    fill="#2F2F2F"
+                    cx="28"
+                    cy="28"
+                    r="28"
+                    id="bkmk-circle"
+                  />
+                  <path
+                    fill="#B1B1B1"
+                    d="M23 19v18l5-5.058L33 37V19z"
+                    id="bkmk-path"
+                  />
+                </g>
+              </svg>
+              <span class="visually-hidden">Bookmark</span>
+            </div>
+          </div>
         </section>
 
         <section id="goals" class="card">
@@ -137,8 +148,10 @@
               us launch our promotional campaign, and you'll be added to a
               special Backer member list.
             </p>
-            <p><span class="big-number">101</span> left</p>
-            <button type="button" class="txt-btn">Select Reward</button>
+            <div>
+              <p><span class="big-number">101</span> left</p>
+              <button type="button" class="txt-btn">Select Reward</button>
+            </div>
           </aside>
 
           <aside class="card inner-card">
@@ -151,8 +164,10 @@
               thank you. You'll be added to our Backer member list. Shipping is
               included.
             </p>
-            <p><span class="big-number">64</span> left</p>
-            <button type="button" class="txt-btn">Select Reward</button>
+            <div>
+              <p><span class="big-number">64</span> left</p>
+              <button type="button" class="txt-btn">Select Reward</button>
+            </div>
           </aside>
 
           <aside class="card inner-card opaque">
@@ -165,10 +180,12 @@
               a personal thank you. You'll be added to our Backer member list.
               Shipping is included.
             </p>
-            <p><span class="big-number">0</span> left</p>
-            <button type="button" class="txt-btn txt-btn-gray" disabled>
-              Out of Stock
-            </button>
+            <div>
+              <p><span class="big-number">0</span> left</p>
+              <button type="button" class="txt-btn txt-btn-gray" disabled>
+                Out of Stock
+              </button>
+            </div>
           </aside>
         </section>
       </div>

@@ -2,6 +2,7 @@
 /* Global Styles */
 :root {
   --dark-gray: hsl(0, 0%, 48%);
+  --light-gray: hsl(0, 0%, 80%);
   --moderate-cyan: hsl(176, 50%, 47%);
   --opaque-dark-gray: rgba(122, 122, 122, 0.5);
   --dark-cyan: hsl(176, 72%, 28%);
@@ -144,7 +145,7 @@ main {
   font-weight: var(--slightly-bold-font-weight);
 }
 
-.short-bot-border:after {
+.short-bot-border::after {
   border-bottom: 0.063rem solid var(--opaque-dark-gray);
   content: '';
   display: block;
@@ -224,7 +225,6 @@ main {
     }
 
     & menu {
-      cursor: pointer;
       list-style-type: none;
       margin: 0;
       padding: 0;
@@ -235,16 +235,10 @@ main {
       }
 
       & li {
+        cursor: pointer;
         font-weight: var(--slightly-bold-font-weight);
         margin: 0;
         padding: var(--default-padding);
-      }
-
-      & a {
-        color: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        text-decoration: none;
       }
 
       & .short-bot-border:after {
@@ -267,13 +261,31 @@ main {
     top: -1.5rem;
   }
 
-  & > header {
+  & header {
     flex: auto;
   }
 
-  & > button {
+  & > div {
     flex: initial;
-    margin-right: var(--default-margin);
+    display: flex;
+    align-items: center;
+
+    & button {
+      flex: initial;
+      margin-right: var(--default-margin);
+    }
+
+    & div:hover {
+      cursor: pointer;
+
+      & circle {
+        fill: var(--dark-cyan);
+      }
+
+      & path {
+        fill: white;
+      }
+    }
   }
 }
 
@@ -285,13 +297,13 @@ main {
   flex-wrap: nowrap;
   justify-content: center;
 
-  & > p {
+  & p {
     flex: auto;
     line-height: 1.2;
     text-align: center;
   }
 
-  & > meter {
+  & meter {
     appearance: none;
     background: none;
     background-color: var(--opaque-dark-gray);
@@ -299,12 +311,12 @@ main {
     flex: auto;
   }
 
-  & > meter::-moz-meter-bar {
+  & meter::-moz-meter-bar {
     background: var(--moderate-cyan);
     border-radius: var(--default-border-radius);
   }
 
-  & > meter::-webkit-meter-bar {
+  & meter::-webkit-meter-bar {
     appearance: none;
     background: var(--moderate-cyan);
   }
@@ -400,4 +412,110 @@ main {
 }
 
 @media (min-width: 750px) {
+  #menu-box {
+    & #ham-menu {
+      display: none;
+    }
+
+    & #ham-menu-close {
+      display: none;
+    }
+
+    & #nav-modal {
+      flex: initial;
+      display: block !important;
+      position: static;
+
+      & nav {
+        background: none;
+        color: white;
+
+        & div {
+          display: inline;
+        }
+
+        & li {
+          display: inline;
+        }
+
+        & .short-bot-border:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  main section {
+    max-width: 44.5rem;
+  }
+
+  #intro {
+    & > div {
+      flex: auto;
+      justify-content: space-between;
+      width: 100%;
+      padding: var(--default-padding);
+
+      & button {
+        margin-right: auto;
+      }
+
+      & div {
+        background: var(--light-gray);
+        border-radius: 2.25rem;
+        color: var(--dark-gray);
+        display: flex;
+        align-items: center;
+        font-weight: var(--bold-font-weight);
+
+        & span {
+          margin: 0 var(--default-margin);
+          display: inline-block !important;
+        }
+      }
+    }
+  }
+
+  #goals {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & p {
+      border-right: 0.063rem solid var(--opaque-dark-gray);
+    }
+
+    & p:last-of-type {
+      border-right: none;
+    }
+
+    & meter {
+      width: 100%;
+    }
+
+    & .short-bot-border::after {
+      display: none;
+    }
+  }
+
+  #about {
+    & h3 {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      width: 100%;
+
+      & br {
+        display: none;
+      }
+    }
+
+    & div {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
 }
