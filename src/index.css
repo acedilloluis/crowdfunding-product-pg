@@ -339,8 +339,6 @@ main {
   }
 
   & .card > header:hover {
-    cursor: pointer;
-
     & > button {
       border: 0.063rem solid var(--moderate-cyan);
     }
@@ -352,6 +350,7 @@ main {
 
   & .card > header {
     align-items: center;
+    cursor: pointer;
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -364,7 +363,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
 
-    & > p {
+    & p {
       flex: auto;
       text-align: center;
       width: 100%;
@@ -385,9 +384,13 @@ main {
       max-width: 8rem;
     }
 
-    & > button {
+    & div {
       flex: initial;
     }
+  }
+
+  & .modal-content > div:last-of-type > header {
+    cursor: not-allowed;
   }
 }
 
@@ -399,11 +402,12 @@ main {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    line-height: var(--default-line-height);
+    text-align: center;
   }
 
   & h2 {
     flex: 1 0 100%;
-    text-align: center;
   }
 
   & p {
@@ -438,7 +442,7 @@ main {
           display: inline;
         }
 
-        & .short-bot-border:after {
+        & .short-bot-border::after {
           display: none;
         }
       }
@@ -541,5 +545,24 @@ main {
     & .items-mobile {
       display: none;
     }
+
+    & .pledge-box {
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      padding-top: var(--default-padding);
+
+      & p {
+        flex: initial;
+        width: auto;
+      }
+    }
+  }
+
+  #thank-u-modal > .modal-content {
+    left: auto;
+    right: auto;
+    margin: auto;
+    max-width: 35rem;
+    padding: calc(2 * var(--default-padding));
   }
 }
