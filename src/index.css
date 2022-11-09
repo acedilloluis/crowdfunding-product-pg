@@ -518,4 +518,28 @@ main {
       width: 100%;
     }
   }
+
+  #selection-modal {
+    max-width: 44.5rem;
+
+    & .card header > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      & h3 > br {
+        display: none;
+        flex: auto;
+      }
+
+      & .items-desktop {
+        display: block !important;
+      }
+    }
+
+    & .items-mobile {
+      display: none;
+    }
+  }
 }
