@@ -52,6 +52,18 @@ main {
   font-weight: var(--bold-font);
 }
 
+.bkmk-active {
+  color: var(--dark-cyan);
+
+  & circle {
+    fill: var(--dark-cyan);
+  }
+
+  & path {
+    fill: white;
+  }
+}
+
 .circle-btn {
   background-color: white;
   border-radius: 50%;
@@ -264,7 +276,8 @@ main {
       margin-right: var(--margin);
     }
 
-    & div:hover {
+    & .bkmk:hover {
+      color: var(--dark-cyan);
       cursor: pointer;
 
       & circle {
@@ -373,7 +386,7 @@ main {
       max-width: 8rem;
     }
 
-    & div {
+    & form {
       flex: initial;
     }
   }
@@ -453,10 +466,9 @@ main {
         margin-right: auto;
       }
 
-      & div {
+      & .bkmk {
         background: var(--light-gray);
         border-radius: 2.25rem;
-        color: var(--dark-gray);
         display: flex;
         align-items: center;
         font-weight: var(--bold-font);
