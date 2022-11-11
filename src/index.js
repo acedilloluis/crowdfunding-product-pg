@@ -1,8 +1,24 @@
 const main = document.querySelector('main');
+const selecModalHeader = document.querySelector('#selection-modal header');
 
-function openModal(modal) {
+function openModal(modal, isReward, index = 0) {
   modal.classList.remove('visually-hidden');
   main.classList.add('more-opaque');
+  const rewardScrollValue =
+    index === 0
+      ? 150 + selecModalHeader.scrollHeight + innerCards[0].scrollHeight
+      : 150 +
+        selecModalHeader.scrollHeight +
+        innerCards[0].scrollHeight +
+        innerCards[1].scrollHeight;
+  // 150 is default value that selection/thank u modals are offset from top of screen
+  isReward
+    ? window.scrollTo({
+        top: rewardScrollValue,
+        left: 0,
+        behavior: 'smooth',
+      })
+    : window.scrollTo({ top: 150, left: 0, behavior: 'smooth' });
 }
 
 function closeModal(modal) {
@@ -89,15 +105,15 @@ const rewardBtns = document.querySelectorAll('#about button');
 const selecModal = document.querySelector('#selection-modal');
 const modalClose = document.querySelector('#close-modal');
 
-backProjBtn.addEventListener('click', () => openModal(selecModal));
+backProjBtn.addEventListener('click', () => openModal(selecModal, false));
 
 for (let i = 0; i < rewardBtns.length; i++) {
   rewardBtns[i].addEventListener('click', () => {
-    selecModal.classList.remove('visually-hidden');
     // Pledge with no reward first card in selection modal so index needs to be shifted by 1
     removeAllOtherSelections(i + 1);
     styleSelectedCard(i + 1);
     isClicked[i + 1] = true;
+    openModal(selecModal, true, i);
   });
 }
 
@@ -176,10 +192,10 @@ function updateSelecModalUI(index) {
 function updateUI(event, index) {
   event.preventDefault();
   closeModal(selecModal);
-  openModal(thankUModal);
   updateGoal(pledgeFields[index].value);
   updateInventoryUI(index);
   updateSelecModalUI(index);
+  openModal(thankUModal, false);
 }
 
 for (let i = 0; i < forms.length; i++) {
