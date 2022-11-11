@@ -168,7 +168,7 @@ main {
   cursor: pointer;
   font-weight: var(--bold-font);
   text-align: center;
-  padding: var(--padding) 2rem;
+  padding: var(--padding) 1rem;
 }
 
 .txt-btn:hover,
@@ -379,11 +379,15 @@ main {
       text-align: center;
       padding: 1rem 0;
       margin-right: var(--margin);
-      max-width: 8rem;
+      max-width: 5rem;
     }
 
     & form {
       flex: initial;
+
+      & button {
+        flex: initial;
+      }
     }
   }
 
@@ -414,6 +418,10 @@ main {
 }
 
 @media (min-width: 750px) {
+  .txt-btn {
+    padding: var(--padding) 2rem;
+  }
+
   #menu-box {
     & #ham-menu {
       display: none;
@@ -547,6 +555,10 @@ main {
 
     & .items-mobile {
       display: none;
+    }
+
+    & .pledge-field {
+      max-width: 8rem;
     }
 
     & .pledge-box {
