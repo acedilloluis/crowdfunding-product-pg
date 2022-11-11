@@ -22,6 +22,55 @@ bkmk.addEventListener('click', () => {
   isBkMked = isBkMked ? false : true;
 });
 
+// Style selected cards in selection modal, open pledge boxes
+const innerCards = document.querySelectorAll('#selection-modal div.inner-card');
+const selecCardHeaders = document.querySelectorAll('div.inner-card>header');
+const circleBtns = document.querySelectorAll('.circle-btn');
+const pledgeBoxes = document.querySelectorAll('.pledge-box');
+const circleBtnsFill = document.querySelectorAll('.circle-btn>div');
+const isClicked = Array(selecCardHeaders.length).fill(false);
+
+function styleSelectedCard(index) {
+  innerCards[index].classList.add('inner-card-selected');
+  circleBtns[index].classList.add('circle-btn-active');
+  circleBtnsFill[index].classList.add('circle-btn-fill');
+  pledgeBoxes[index].classList.remove('visually-hidden');
+}
+
+function unstyleSelectedCard(index) {
+  innerCards[index].classList.remove('inner-card-selected');
+  circleBtns[index].classList.remove('circle-btn-active');
+  circleBtnsFill[index].classList.remove('circle-btn-fill');
+  pledgeBoxes[index].classList.add('visually-hidden');
+}
+
+function removeAllOtherSelections(startIndex) {
+  // Change state to false and unstyle all other cards in selection modal besides the one clicked
+  for (let i = 0; i < isClicked.length; i++) {
+    if (i !== startIndex) {
+      isClicked[i] = false;
+    }
+  }
+  for (let j = 0; j < innerCards.length; j++) {
+    if (!innerCards[j].classList.contains('opaque') && j !== startIndex) {
+      unstyleSelectedCard(j);
+    }
+  }
+}
+
+for (let i = 0; i < selecCardHeaders.length; i++) {
+  // Only add event listner to cards not grayed out
+  if (!innerCards[i].classList.contains('opaque')) {
+    selecCardHeaders[i].addEventListener('click', () => {
+      if (isClicked.includes(true)) {
+        removeAllOtherSelections(i);
+      }
+      isClicked[i] ? unstyleSelectedCard(i) : styleSelectedCard(i);
+      isClicked[i] = isClicked[i] ? false : true;
+    });
+  }
+}
+
 // Open/close/styles for selection modal
 const backProjBtn = document.querySelector('#back-proj-btn');
 const rewardBtns = document.querySelectorAll('#about button');
@@ -32,42 +81,21 @@ backProjBtn.addEventListener('click', () =>
   selecModal.classList.remove('visually-hidden')
 );
 
-for (const btn of rewardBtns) {
-  btn.addEventListener('click', () =>
-    selecModal.classList.remove('visually-hidden')
-  );
+for (let i = 0; i < rewardBtns.length; i++) {
+  rewardBtns[i].addEventListener('click', () => {
+    selecModal.classList.remove('visually-hidden');
+    // Pledge with no reward first card in selection modal so index needs to be shitfted by 1
+    removeAllOtherSelections(i + 1);
+    styleSelectedCard(i + 1);
+    isClicked[i + 1] = true;
+  });
 }
 
 modalClose.addEventListener('click', () =>
   selecModal.classList.add('visually-hidden')
 );
 
-// Open pledge boxes
-const innerCards = document.querySelectorAll('#selection-modal div.inner-card');
-const selecCardHeaders = document.querySelectorAll('div.inner-card>header');
-const circleBtns = document.querySelectorAll('.circle-btn');
-const pledgeBoxes = document.querySelectorAll('.pledge-box');
-const circleBtnsFill = document.querySelectorAll('.circle-btn>div');
-const isClicked = [false, false, false];
-
-for (let i = 0; i < selecCardHeaders.length - 1; i++) {
-  selecCardHeaders[i].addEventListener('click', () => {
-    if (isClicked[i]) {
-      innerCards[i].classList.remove('inner-card-selected');
-      circleBtns[i].classList.remove('circle-btn-active');
-      circleBtnsFill[i].classList.remove('circle-btn-fill');
-      pledgeBoxes[i].classList.add('visually-hidden');
-    } else {
-      innerCards[i].classList.add('inner-card-selected');
-      circleBtns[i].classList.add('circle-btn-active');
-      circleBtnsFill[i].classList.add('circle-btn-fill');
-      pledgeBoxes[i].classList.remove('visually-hidden');
-    }
-    isClicked[i] = isClicked[i] ? false : true;
-  });
-}
-
-// Update goals section, open/close thank you modal
+// Update goals section, inventory, open/close thank you modal
 const goalParas = document.querySelectorAll('#goals p');
 const displayedFunds = goalParas[0].firstChild;
 const displayedBackers = goalParas[1].firstChild;
@@ -77,25 +105,24 @@ const pledgeFields = document.querySelectorAll('.pledge-field');
 const thankUModal = document.querySelector('#thank-u-modal');
 const gotItBtn = document.querySelector('#thank-u-modal button');
 const aboutInventory = document.querySelectorAll('#about span.big-number');
-// Each piece of inventory has two elements displaying the number left in the selection modal
+// Each piece of inventory has two elements displaying the number of items left in the selection modal
 const selecInventory = document.querySelectorAll(
   '#selection-modal span.big-number'
 );
 const inventory = { bamboo: 101, black: 64, mahogany: 0 };
 const goalData = { funds: 89914, backers: 5007 };
-
+// Need to add ability to gray out cards whose inventory is 0
 function cleanInput(input) {
   return input.startsWith('$')
     ? input.substring(1).replaceAll(',', '')
     : input.substring(0).replaceAll(',', '');
 }
 
-function updateGoalData(input) {
+function updateGoal(input) {
+  // Update goalData
   goalData.funds += parseFloat(cleanInput(input));
   goalData.backers++;
-}
-
-function updateGoalUI() {
+  // Update goalUI
   meter.value = goalData.funds;
   // Format goalData[0] into US currency format
   displayedFunds.textContent = new Intl.NumberFormat('en-US', {
@@ -131,20 +158,23 @@ function updateInventoryUI(index) {
   }
 }
 
-function updateUI(index) {
-  showElem1HideElem2(thankUModal, selecModal);
-  updateGoalData(pledgeFields[index].value);
-  updateGoalUI();
-  updateInventoryUI(index);
+function updateSelecModalUI(index) {
+  // close pledge-box, remove circle btn active, inner-card-selected, clear input field
+  unstyleSelectedCard(index);
+  isClicked[index] = false;
   pledgeFields[index].value = '';
 }
 
+function updateUI(event, index) {
+  event.preventDefault();
+  showElem1HideElem2(thankUModal, selecModal);
+  updateGoal(pledgeFields[index].value);
+  updateInventoryUI(index);
+  updateSelecModalUI(index);
+}
+
 for (let i = 0; i < forms.length; i++) {
-  forms[i].addEventListener('submit', (event) => {
-    event.preventDefault();
-    updateUI(i);
-    // close pledge-box, remove circle btn active, inner-card-selected
-  });
+  forms[i].addEventListener('submit', (event) => updateUI(event, i));
 }
 
 gotItBtn.addEventListener('click', () => {
