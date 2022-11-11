@@ -1,3 +1,15 @@
+const main = document.querySelector('main');
+
+function openModal(modal) {
+  modal.classList.remove('visually-hidden');
+  main.classList.add('more-opaque');
+}
+
+function closeModal(modal) {
+  modal.classList.add('visually-hidden');
+  main.classList.remove('more-opaque');
+}
+
 // Open/close mobile menu
 const navModal = document.querySelector('#nav-modal');
 const hamMenu = document.querySelector('#ham-menu');
@@ -77,23 +89,19 @@ const rewardBtns = document.querySelectorAll('#about button');
 const selecModal = document.querySelector('#selection-modal');
 const modalClose = document.querySelector('#close-modal');
 
-backProjBtn.addEventListener('click', () =>
-  selecModal.classList.remove('visually-hidden')
-);
+backProjBtn.addEventListener('click', () => openModal(selecModal));
 
 for (let i = 0; i < rewardBtns.length; i++) {
   rewardBtns[i].addEventListener('click', () => {
     selecModal.classList.remove('visually-hidden');
-    // Pledge with no reward first card in selection modal so index needs to be shitfted by 1
+    // Pledge with no reward first card in selection modal so index needs to be shifted by 1
     removeAllOtherSelections(i + 1);
     styleSelectedCard(i + 1);
     isClicked[i + 1] = true;
   });
 }
 
-modalClose.addEventListener('click', () =>
-  selecModal.classList.add('visually-hidden')
-);
+modalClose.addEventListener('click', () => closeModal(selecModal));
 
 // Update goals section, inventory, open/close thank you modal
 const goalParas = document.querySelectorAll('#goals p');
@@ -167,7 +175,8 @@ function updateSelecModalUI(index) {
 
 function updateUI(event, index) {
   event.preventDefault();
-  showElem1HideElem2(thankUModal, selecModal);
+  closeModal(selecModal);
+  openModal(thankUModal);
   updateGoal(pledgeFields[index].value);
   updateInventoryUI(index);
   updateSelecModalUI(index);
@@ -177,6 +186,4 @@ for (let i = 0; i < forms.length; i++) {
   forms[i].addEventListener('submit', (event) => updateUI(event, i));
 }
 
-gotItBtn.addEventListener('click', () => {
-  thankUModal.classList.add('visually-hidden');
-});
+gotItBtn.addEventListener('click', () => closeModal(thankUModal));

@@ -123,11 +123,16 @@ main {
 .modal-content {
   background-color: white;
   border-radius: var(--border-radius);
+  border: 0.063rem solid var(--opaque-dark-gray);
   padding: var(--padding);
 }
 
 .opaque {
   opacity: 0.5;
+}
+
+.more-opaque {
+  opacity: 0.25;
 }
 
 .paragraph {
@@ -213,6 +218,7 @@ main {
     overflow: visible;
 
     & .modal-content {
+      border: none;
       padding: 0;
     }
 
