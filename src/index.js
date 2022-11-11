@@ -135,7 +135,7 @@ const selecInventory = document.querySelectorAll(
 );
 const inventory = { bamboo: 101, black: 64, mahogany: 0 };
 const goalData = { funds: 89914, backers: 5007 };
-// Need to add ability to gray out cards whose inventory is 0
+
 function cleanInput(input) {
   return input.startsWith('$')
     ? input.substring(1).replaceAll(',', '')

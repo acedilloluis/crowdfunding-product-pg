@@ -218,7 +218,6 @@ main {
     overflow: visible;
 
     & .modal-content {
-      border: none;
       padding: 0;
     }
 
@@ -282,17 +281,8 @@ main {
       margin-right: var(--margin);
     }
 
-    & .bkmk:hover {
-      color: var(--dark-cyan);
+    & .bkmk {
       cursor: pointer;
-
-      & circle {
-        fill: var(--dark-cyan);
-      }
-
-      & path {
-        fill: white;
-      }
     }
   }
 }
@@ -440,6 +430,7 @@ main {
 
       & nav {
         background: none;
+        border: none;
         color: white;
 
         & div {
